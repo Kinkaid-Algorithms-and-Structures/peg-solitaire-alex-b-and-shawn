@@ -1,4 +1,4 @@
-from Model import game_board[]
+from Model import Model
 class Viewer:
     def __init__(self):
         self.peg_symbol = '📍'
@@ -7,4 +7,4 @@ class Viewer:
     def print_board(self):
         for i in range(0, 4):
             for j in range(0, i+1):
-                print(game_board[i][j])
+                print(Model.game_board[i][j])
