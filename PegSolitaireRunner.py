@@ -1,5 +1,7 @@
 import logging, datetime
 from KinkaidDecorators import log_start_stop_method
+from Controller import Controller
+from Viewer import Viewer
 
 logging.basicConfig(level=logging.INFO)  # simple version to the output console
 # logging.basicConfig(level=logging.DEBUG, filename=f"log {datetime.datetime.now():%m-%d@%H:%M:%S}.txt",
@@ -14,8 +16,10 @@ class PegSolitaireRunner:
     @log_start_stop_method
     def play_game(self):  # note: this is complaining (grey underline) that it could be static because it doesn't use
         # any variables or methods from "self." Once you do, it will stop pestering you about it.
-        pass
-
+        self_my_controller = Controller
+        self_my_viewer = Viewer
+        self_my_controller.choose_starting_hole()
+        self_my_viewer.print_board()
 if __name__ == "__main__":
     game = PegSolitaireRunner()
     game.play_game()
