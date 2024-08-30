@@ -9,6 +9,8 @@ logging.basicConfig(level=logging.INFO)  # simple version to the output console
 class PegSolitaireRunner:
     def __init__(self):
         logging.info("Initializing.")
+        peg_symbol= "📍"
+        hole_symbol= "🕳️"
         # add any code you want to set up variables for the game.
     
     @log_start_stop_method
