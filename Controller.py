@@ -17,9 +17,9 @@ class Controller:
         """
         if position_X > position_Y:
             return False
-        if position_X >= 5:
+        if position_X > 4:
             return False
-        elif position_Y >= 5:
+        elif position_Y > 4:
             return False
         else:
             return True
