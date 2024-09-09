@@ -46,7 +46,7 @@ class Controller:
             if initial_positionX == final_positionX-2:
                 if self.MyModel.game_board[final_positionY][final_positionX+1]:
                     return True
-        if final_positionX == final_positionX:
+        if final_positionX == initial_positionX:
             if initial_positionY == final_positionY+2:
                 if self.MyModel.game_board[final_positionY-1][final_positionX]:
                     return True
@@ -61,6 +61,6 @@ class Controller:
         """
         :return: delete_square
         """
-        starting_hole = input("Which space do you want to be the first empty peg? Type it in form of \"2,3\" ")
-        delete_square = [starting_hole[0], starting_hole[2]]
-        return delete_square
+        starting_hole = input("Which space do you want to be the first empty peg? Type it in form of \"2 3\" ")
+        delete_square = starting_hole.split(" ")
+        return int(delete_square[0]),int(delete_square[1])
