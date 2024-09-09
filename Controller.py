@@ -17,15 +17,22 @@ class Controller:
         """
         if position_X > position_Y:
             return False
-        if position_X >= 5:
+        if position_X > 4:
             return False
-        elif position_Y >= 5:
+        elif position_Y > 4:
             return False
         else:
             return True
 
 
     def is_move_valid(self, final_positionX, final_positionY, initial_positionX, initial_positionY):
+        """
+        :param final_positionX:
+        :param final_positionY:
+        :param initial_positionX:
+        :param initial_positionY:
+        :return: boolean
+        """
         if self.is_in_bounds(final_positionX, final_positionY) == False or self.is_in_bounds(initial_positionX, initial_positionY) == False:
             return False
         if self.MyModel.game_board[final_positionY][final_positionX] is not None:
@@ -33,11 +40,20 @@ class Controller:
         elif self.MyModel.game_board[final_positionY][final_positionX] == self.MyModel.game_board[initial_positionY][initial_positionX]:
             return False
         if final_positionY == initial_positionY:
-            if initial_positionX == final_positionX +2 or initial_positionX == final_positionX-2:
-                return True
+            if initial_positionX == final_positionX +2:
+                if self.MyModel.game_board[final_positionY][final_positionX-1]:
+                    return True
+            if initial_positionX == final_positionX-2:
+                if self.MyModel.game_board[final_positionY][final_positionX+1]:
+                    return True
         if final_positionX == final_positionX:
-            if initial_positionY == final_positionY+2 or initial_positionY == final_positionY-2:
-                return True
+            if initial_positionY == final_positionY+2:
+                if self.MyModel.game_board[final_positionY-1][final_positionX]:
+                    return True
+            if initial_positionY == final_positionY-2:
+                if self.MyModel.game_board[final_positionY+1][final_positionX]:
+                    return True
+        return False
 
 
 
