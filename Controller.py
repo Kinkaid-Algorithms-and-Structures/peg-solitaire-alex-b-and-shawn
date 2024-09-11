@@ -10,58 +10,20 @@ class Controller:
     def set_model(self, model):
         self.model = model
 
-    def is_in_bounds(self, position_X, position_Y):
-        """
-
-        :param position_X:
-        :param position_Y:
-        :return: boolean
-        """
-        if position_X > position_Y:
-            return False
-        if position_X > 4:
-            return False
-        elif position_Y > 4:
-            return False
-        else:
-            return True
-
-
-    def is_move_valid(self, final_positionX, final_positionY, initial_positionX, initial_positionY):
-        """
-        :param final_positionX:
-        :param final_positionY:
-        :param initial_positionX:
-        :param initial_positionY:
-        :return: boolean
-        """
-        if self.is_in_bounds(final_positionX, final_positionY) == False or self.is_in_bounds(initial_positionX, initial_positionY) == False:
-            return False
-        if self.MyModel.game_board[final_positionY][final_positionX] is not None:
-            return False
-        elif self.MyModel.game_board[final_positionY][final_positionX] == self.MyModel.game_board[initial_positionY][initial_positionX]:
-            return False
-        if final_positionY == initial_positionY:
-            if initial_positionX == final_positionX +2:
-                if self.MyModel.game_board[final_positionY][final_positionX-1]:
-                    return True
-            if initial_positionX == final_positionX-2:
-                if self.MyModel.game_board[final_positionY][final_positionX+1]:
-                    return True
-        if final_positionX == final_positionX:
-            if initial_positionY == final_positionY+2:
-                if self.MyModel.game_board[final_positionY-1][final_positionX]:
-                    return True
-            if initial_positionY == final_positionY-2:
-                if self.MyModel.game_board[final_positionY+1][final_positionX]:
-                    return True
-        return False
-
     def choose_starting_hole(self):
         starting_hole = input("Which space do you want to be the first empty peg? Please type it in form of \"2,3\"")
         starting_row = int(starting_hole[0])
         starting_col = int(starting_hole[2])
         self.model.delete_peg(starting_row, starting_col)
 
+    def game_turn(self):
+        starting_peg = input("Which peg would you like to move?")
+        final_peg = input("Where would you like to move it?")
+        starting_row = int(starting_peg[0])
+        starting_col = int(starting_peg[2])
+        final_row = int(final_peg[0])
+        final_col = int(final_peg[2])
+        print(starting_row, starting_col, final_row, final_col)
+        self.model.make_move(starting_row, starting_col, final_row, final_col)
 
 

@@ -24,9 +24,15 @@ class PegSolitaireRunner:
         my_viewer.set_controller(my_controller)
         my_controller.set_model(my_model)
 
-
         my_controller.choose_starting_hole()
         my_viewer.print_board()
+
+        while my_model.num_pegs_left > 1:
+            my_controller.game_turn()
+            my_viewer.print_board()
+
+        print("You Win!")
+
 if __name__ == "__main__":
     game = PegSolitaireRunner()
     game.play_game()

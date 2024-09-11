@@ -59,7 +59,7 @@ class Model:
 
         if peg_col > final_col:
             self.y_direction = -1
-        if peg_col < final_col:
+        elif peg_col < final_col:
             self.y_direction = 1
         else:
             self.y_direction = 0
@@ -67,10 +67,8 @@ class Model:
 
     def check_valid_move(self, peg_row, peg_col, final_row, final_col):
         if self.is_inbounds(peg_row, peg_col) and self.is_inbounds(final_row, final_col) and self.game_board[peg_row][peg_col] == 1 and self.game_board[peg_row+self.x_direction][peg_col+self.y_direction] == 1 and self.game_board[final_row][final_col] == 0:
-            print("inbounds")
             return True
         else:
-            print("outofbounds")
             return False
 
     def make_move(self, peg_row, peg_col, final_row, final_col):
