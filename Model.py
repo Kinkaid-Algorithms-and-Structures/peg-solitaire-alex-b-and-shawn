@@ -3,26 +3,39 @@ from typing import final
 
 class Model:
     def __init__(self):
-        self.num_pegs_left = 0
-        self.direction = 0
+        self.num_pegs_left = 14
+        self.x_direction = 0
+        self.y_direction = 0
         self.game_board = [[0 for c in range(5)] for r in range(5)]
         self.fill_board()
-        print(self.game_board[0])
-        print(self.game_board[1])
-        print(self.game_board[2])
-        print(self.game_board[3])
-        print(self.game_board[4])
-        sr = int(input("sr?"))
-        sc = int(input("sc?"))
-        fr = int(input("fr?"))
-        fc = int(input("fc?"))
-        self.check_valid_move(sr, sc, fr, fc)
-        print(self.direction)
+
+# temporary — sets 0, 0 to be open, controller should change this to allow user to pick open peg
+        # self.game_board[0][0] = 0
+
+# temporary — viewer should draw board
+        # self.draw_board()
+
+# temporary — game controls for testing
+        # while self.num_pegs_left > 0:
+        #     self.x_direction = 0
+        #     self.y_direction = 0
+        #     pr = int(input("pr"))
+        #     pc = int(input("pc"))
+        #     fr = int(input("fr"))
+        #     fc = int(input("fc"))
+        #     self.make_move(pr, pc, fr, fc)
+        #     self.draw_board()
 
     def fill_board(self):
         for r in range(0, 5):
             for c in range(0, r+1):
                 self.game_board[r][c] = 1
+
+    def draw_board(self):
+        for r in range(0, 5):
+            for c in range(0, r+1):
+                print(self.game_board[r][c], end ="")
+            print()
 
     def is_inbounds(self, row, col):
         if row > 4 or col > 4 or row < 0 or col < 0:
@@ -34,30 +47,42 @@ class Model:
         else:
             return True
 
-    def check_valid_move(self, peg_row, peg_column, final_row, final_col):
-        if self.is_inbounds(peg_row, peg_column) and self.is_inbounds(final_row, final_col):
+
+    def get_direction(self, peg_row, peg_col, final_row, final_col):
+        if peg_row > final_row:
+            self.x_direction = -1
+        elif peg_row < final_row:
+            self.x_direction = 1
+        else:
+            self.x_direction = 0
+
+        if peg_col > final_col:
+            self.y_direction = -1
+        if peg_col < final_col:
+            self.y_direction = 1
+        else:
+            self.y_direction = 0
+
+
+    def check_valid_move(self, peg_row, peg_col, final_row, final_col):
+        if self.is_inbounds(peg_row, peg_col) and self.is_inbounds(final_row, final_col) and self.game_board[peg_row][peg_col] == 1 and self.game_board[peg_row+self.x_direction][peg_col+self.y_direction] == 1 and self.game_board[final_row][final_col] == 0:
             print("inbounds")
+            return True
         else:
             print("outofbounds")
+            return False
 
-        if peg_row > final_row:
-            if peg_column > final_col:
-                self.direction = 1
-            elif peg_column == final_col:
-                self.direction = 2
-            elif peg_column < final_col:
-                self.direction = 3
-        elif peg_row < final_row:
-            if peg_column < final_col:
-                self.direction = 5
-            elif peg_column == final_col:
-                self.direction = 6
-            elif peg_column > final_col:
-                self.direction = 7
-        elif peg_column < final_col:
-                self.direction = 4
+    def make_move(self, peg_row, peg_col, final_row, final_col):
+        self.get_direction(peg_row, peg_col, final_row, final_col)
+        if self.check_valid_move(peg_row, peg_col, final_row, final_col):
+            self.game_board[peg_row][peg_col] = 0
+            self.game_board[peg_row+self.x_direction][peg_col+self.y_direction] = 0
+            self.game_board[final_row][final_col] = 1
+            self.num_pegs_left -= 1
         else:
-            self.direction = 8
+            print("Invalid Move! Try Again!")
+
+
 
 if __name__ == "__main__":
     Game = Model()
