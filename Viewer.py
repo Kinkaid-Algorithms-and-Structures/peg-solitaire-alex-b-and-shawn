@@ -1,12 +1,20 @@
 from Model import Model
+from Controller import Controller
+
 class Viewer:
     def __init__(self):
         self.peg_symbol = '📍'
         self.hole_symbol = '🕳'
-        self.MyModel = Model()
+
+
+    def set_controller(self, controller):
+        self.controller = controller
 
     def print_board(self):
         for r in range(0, 5):
             for c in range(0, r + 1):
-                print(self.MyModel.game_board[r][c], end="")
+                if self.controller.model.game_board[r][c] == 1:
+                    print(self.peg_symbol, end ="")
+                else:
+                    print(self.hole_symbol, end ="")
             print()

@@ -6,7 +6,9 @@ class Controller:
         self.any_valid_moves = False
         self.has_won = False
         self.starting_hole = [0,0]
-        self.MyModel = Model()
+
+    def set_model(self, model):
+        self.model = model
 
     def is_in_bounds(self, position_X, position_Y):
         """
@@ -59,7 +61,7 @@ class Controller:
         starting_hole = input("Which space do you want to be the first empty peg? Please type it in form of \"2,3\"")
         starting_row = int(starting_hole[0])
         starting_col = int(starting_hole[2])
-        Model.delete_peg(self.MyModel, starting_row, starting_col)
+        self.model.delete_peg(starting_row, starting_col)
 
 
 
