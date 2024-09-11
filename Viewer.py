@@ -6,6 +6,7 @@ class Viewer:
         self.MyModel = Model()
 
     def print_board(self):
-        for i in range(0, 5):
-            for j in range(0, i+1):
-                print(self.MyModel.game_board[i][j])
+        for r in range(0, 5):
+            for c in range(0, r + 1):
+                print(self.MyModel.game_board[r][c], end="")
+            print()
