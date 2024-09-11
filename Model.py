@@ -47,6 +47,8 @@ class Model:
         else:
             return True
 
+    def delete_peg(self, row, col):
+        self.game_board[row][col] = 0
 
     def get_direction(self, peg_row, peg_col, final_row, final_col):
         if peg_row > final_row:

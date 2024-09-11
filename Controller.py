@@ -1,6 +1,6 @@
 from itertools import filterfalse
-
 from Model import Model
+
 class Controller:
     def __init__(self):
         self.any_valid_moves = False
@@ -55,12 +55,11 @@ class Controller:
                     return True
         return False
 
-
-
     def choose_starting_hole(self):
-        """
-        :return: delete_square
-        """
         starting_hole = input("Which space do you want to be the first empty peg? Type it in form of \"2,3\" ")
-        delete_square = [starting_hole[0], starting_hole[2]]
-        return delete_square
+        starting_row = starting_hole[0]
+        starting_col = starting_hole[0]
+        Model.delete_peg(self.MyModel, starting_row, starting_col)
+
+
+
