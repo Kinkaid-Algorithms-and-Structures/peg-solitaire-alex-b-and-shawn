@@ -56,9 +56,9 @@ class Controller:
         return False
 
     def choose_starting_hole(self):
-        starting_hole = input("Which space do you want to be the first empty peg? Type it in form of \"2,3\" ")
-        starting_row = starting_hole[0]
-        starting_col = starting_hole[0]
+        starting_hole = input("Which space do you want to be the first empty peg? Please type it in form of \"2,3\"")
+        starting_row = int(starting_hole[0])
+        starting_col = int(starting_hole[2])
         Model.delete_peg(self.MyModel, starting_row, starting_col)
 
 
