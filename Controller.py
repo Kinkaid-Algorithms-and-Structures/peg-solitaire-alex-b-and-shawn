@@ -1,6 +1,6 @@
 from itertools import filterfalse
-
 from Model import Model
+
 class Controller:
     def __init__(self):
         self.any_valid_moves = False
@@ -46,7 +46,7 @@ class Controller:
             if initial_positionX == final_positionX-2:
                 if self.MyModel.game_board[final_positionY][final_positionX+1]:
                     return True
-        if final_positionX == initial_positionX:
+        if final_positionX == final_positionX:
             if initial_positionY == final_positionY+2:
                 if self.MyModel.game_board[final_positionY-1][final_positionX]:
                     return True
@@ -55,12 +55,11 @@ class Controller:
                     return True
         return False
 
-
-
     def choose_starting_hole(self):
-        """
-        :return: delete_square
-        """
-        starting_hole = input("Which space do you want to be the first empty peg? Type it in form of \"2 3\" ")
-        delete_square = starting_hole.split(" ")
-        return int(delete_square[0]),int(delete_square[1])
+        starting_hole = input("Which space do you want to be the first empty peg? Type it in form of \"2,3\" ")
+        starting_row = starting_hole[0]
+        starting_col = starting_hole[0]
+        Model.delete_peg(self.MyModel, starting_row, starting_col)
+
+
+
