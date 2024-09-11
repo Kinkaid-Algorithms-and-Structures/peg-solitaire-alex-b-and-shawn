@@ -16,8 +16,8 @@ class PegSolitaireRunner:
     @log_start_stop_method
     def play_game(self):  # note: this is complaining (grey underline) that it could be static because it doesn't use
         # any variables or methods from "self." Once you do, it will stop pestering you about it.
-        self_my_controller = Controller
-        self_my_viewer = Viewer
+        self_my_controller = Controller()
+        self_my_viewer = Viewer()
         self_my_controller.choose_starting_hole()
         self_my_viewer.print_board()
 if __name__ == "__main__":

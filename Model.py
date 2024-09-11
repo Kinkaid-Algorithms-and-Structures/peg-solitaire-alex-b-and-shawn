@@ -1,6 +1,5 @@
 from typing import final
 
-
 class Model:
     def __init__(self):
         self.num_pegs_left = 14
