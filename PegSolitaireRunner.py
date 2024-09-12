@@ -24,6 +24,11 @@ class PegSolitaireRunner:
         my_viewer.set_controller(my_controller)
         my_controller.set_model(my_model)
 
+        print("Welcome to Peg Solitaire!")
+        print("The goal of the game is to remove as many pegs as possible")
+        print('"Remove pegs by "jumping" over them with other pegs')
+        print("Each hole on the board is represented by a coordinate from 0,0 to 4,4")
+
         my_controller.choose_starting_hole()
         my_viewer.print_board()
 

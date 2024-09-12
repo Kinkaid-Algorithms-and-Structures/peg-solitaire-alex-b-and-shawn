@@ -11,7 +11,7 @@ class Controller:
         self.model = model
 
     def choose_starting_hole(self):
-        starting_hole = input("Which space do you want to be the first empty peg? Please type it in form of \"2,3\"")
+        starting_hole = input("Which space do you want to be the first empty peg?")
         starting_row = int(starting_hole[0])
         starting_col = int(starting_hole[2])
         self.model.delete_peg(starting_row, starting_col)
@@ -23,7 +23,6 @@ class Controller:
         starting_col = int(starting_peg[2])
         final_row = int(final_peg[0])
         final_col = int(final_peg[2])
-        print(starting_row, starting_col, final_row, final_col)
         self.model.make_move(starting_row, starting_col, final_row, final_col)
 
 
