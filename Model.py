@@ -70,6 +70,21 @@ class Model:
         else:
             print("Invalid Move! Try Again!")
 
+    def any_valid_moves(self):
+        for r in range(0, 5):
+            for c in range(0, r + 1):
+                if self.game_board[r][c] == 1:
+                    for xdir in range(-1, 2):
+                        for ydir in range(-1, 2):
+                            # temporary debugging statements
+                            # temp_print = f"checking {r}, {c}, {r+2*xdir}, {c+2*ydir}"
+                            # print(temp_print)
+                            self.get_direction(r, c, r + 2*xdir, c + 2*ydir)
+                            if self.check_valid_move(r, c, r + 2*xdir, c + 2*ydir):
+                                return True
+        return False
+
+
 if __name__ == "__main__":
     Game = Model()
 

@@ -14,7 +14,6 @@ class PegSolitaireRunner:
         logging.info("Initializing.")
         # add any code you want to set up variables for the game.
     
-    @log_start_stop_method
     def play_game(self):  # note: this is complaining (grey underline) that it could be static because it doesn't use
         # any variables or methods from "self." Once you do, it will stop pestering you about it.
         my_controller = Controller()
@@ -24,19 +23,40 @@ class PegSolitaireRunner:
         my_viewer.set_controller(my_controller)
         my_controller.set_model(my_model)
 
-        print("Welcome to Peg Solitaire!")
-        print("The goal of the game is to remove as many pegs as possible")
-        print('"Remove pegs by "jumping" over them with other pegs')
-        print("Each hole on the board is represented by a coordinate from 0,0 to 4,4")
+        print("-------------------Welcome to Peg Solitaire!-------------------".center(69, " "))
+        print("The goal of the game is to remove as many pegs as possible".center(69, " "))
+        print('Remove pegs by "jumping" over them with other pegs'.center(69, " "))
+        print("Each hole on the board is represented by a coordinate from 0,0 to 4,4".center(69, " "))
+        print('Select pegs by typing their coordinates in the format "row,col"'.center(69, " "))
+        print("---------------------------------------------------------------".center(69, " "))
+        print()
 
         my_controller.choose_starting_hole()
         my_viewer.print_board()
 
-        while my_model.num_pegs_left > 1:
+        while True:
             my_controller.game_turn()
             my_viewer.print_board()
+            if my_model.num_pegs_left == 1:
+                print()
+                print("*********************************************************************".center(69, " "))
+                print()
+                print("You Win!".center(69, " "))
+                print()
+                print("*********************************************************************".center(69, " "))
+                break
+            if not my_model.any_valid_moves():
+                score = f"Score: {my_model.num_pegs_left}"
+                print()
+                print("*********************************************************************".center(69, " "))
+                print()
+                print("GAME OVER".center(69, " "))
+                print("No More Valid Moves".center(69, " "))
+                print(score.center(69, " "))
+                print()
+                print("*********************************************************************".center(69, " "))
+                break
 
-        print("You Win!")
 
 if __name__ == "__main__":
     game = PegSolitaireRunner()
