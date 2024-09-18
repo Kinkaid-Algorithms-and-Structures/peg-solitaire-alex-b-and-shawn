@@ -14,7 +14,11 @@ class Controller:
         starting_hole = input("Which space do you want to be the first empty peg?")
         starting_row = int(starting_hole[0])
         starting_col = int(starting_hole[2])
-        self.model.delete_peg(starting_row, starting_col)
+        if starting_row > starting_col:
+            print("Invalid peg, Pick again!")
+            self.choose_starting_hole()
+        else:
+            self.model.delete_peg(starting_row, starting_col)
 
     def game_turn(self):
         starting_peg = input("Which peg would you like to move?")
@@ -24,5 +28,3 @@ class Controller:
         final_row = int(final_peg[0])
         final_col = int(final_peg[2])
         self.model.make_move(starting_row, starting_col, final_row, final_col)
-
-
